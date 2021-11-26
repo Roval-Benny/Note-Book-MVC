@@ -1,4 +1,9 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Keepnote.Models;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using Keepnote.Repository;
+using System.Diagnostics;
+using System;
 
 namespace Keepnote.Controllers
 {
@@ -13,9 +18,84 @@ namespace Keepnote.Controllers
 	     3. Delete an existing note.
          4. Update an existing Note.
 	    */
-        
+
+        private readonly INoteRepository _noteRepo;
+
+        public NoteController(INoteRepository repo)
+        {
+            _noteRepo = repo;
+        }
+
+        public IActionResult Index()
+        {
+            List<Note> objNote = _noteRepo.GetAllNotes();
+            return View(objNote);
+        }
+
+
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(Note note)
+        {
+            if (ModelState.IsValid)
+            {
+                _noteRepo.AddNote(note);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View(note);
+            }
+        }
+
+        //public ActionResult Delete(int id)
+        //{
+        //    Note ns = _noteRepo.GetNoteById(id);
+        //    return View(ns);
+        //}
+
+
+        public ActionResult Delete(int id, Note n = null)
+        {
+            Note obj = _noteRepo.GetNoteById(id);
+            return View(obj);
+        }
+
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+
+            if(_noteRepo.DeletNote(id) == 1)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
+            
+        }
+
+        public ActionResult Edit(int id)
+        {
+            Note ns = _noteRepo.GetNoteById(id);
+            return View(ns);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Note n)
+        {
+            _noteRepo.UpdateNote(n);
+            return RedirectToAction("Index");
+        }
+
+
         //Inject the noteRepository instance through constructor injection.
-        
+
         /*
       * Define a handler method to read the existing notes from the database and add
       * it to the ModelMap which is an implementation of Map, used when building

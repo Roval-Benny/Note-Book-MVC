@@ -1,4 +1,6 @@
-﻿namespace Keepnote.Models
+﻿using System;
+
+namespace Keepnote.Models
 {
     public class Note
     {
@@ -14,5 +16,12 @@
          CreatedAt - DateTime
 
 	    */
+        private DateTime _date;
+        public int NoteId { get; set;}
+        public string NoteTitle { get; set; }
+        public string NoteContent { get; set; }
+        public string NoteStatus { get; set; }
+        public DateTime CreatedAt { get; set; }
+
     }
 }

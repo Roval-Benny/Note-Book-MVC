@@ -49,7 +49,11 @@
                 @Html.DisplayFor(modelItem => item.CreatedAt)
             </td>
             <td>
-                @Html.ActionLink("Delete", "Delete", new { id = item.NoteId })
+                @*@using (Html.BeginForm("Delete", "Delete", new { id = item.NoteId }, FormMethod.Post))
+                {
+                    <button>Delete</button>
+                }*@
+                @Html.ActionLink("Delete", "Delete", new {id= item.NoteId })
                 @Html.ActionLink("Modify", "Edit", new { id = item.NoteId })
             </td>
         </tr>

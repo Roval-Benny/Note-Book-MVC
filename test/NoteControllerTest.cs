@@ -73,7 +73,7 @@ namespace Test
         public void UpdateShouldReturnToIndex()
         {
             var mockRepo = new Mock<INoteRepository>();
-            var note = new Note {NoteId=1, NoteTitle="Tech-Stack", NoteContent="DotNet", NoteStatus="Started" };
+            var note = new Note { NoteId = 1, NoteTitle = "Tech-Stack", NoteContent = "DotNet", NoteStatus = "Started" };
             mockRepo.Setup(repo => repo.UpdateNote(note)).Returns(1);
             var noteController = new NoteController(mockRepo.Object);
 

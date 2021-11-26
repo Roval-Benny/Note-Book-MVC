@@ -5,7 +5,7 @@ using Xunit;
 namespace Test
 {
     [TestCaseOrderer("Test.PriorityOrderer", "Test")]
-    public class NoteRepositoryTest:IClassFixture<DatabaseFixture>
+    public class NoteRepositoryTest : IClassFixture<DatabaseFixture>
     {
         private readonly NoteRepository noteRepository;
 
@@ -23,8 +23,8 @@ namespace Test
         [Fact, TestPriority(1)]
         public void AddNoteShouldSuccess()
         {
-            Note note = new Note { NoteTitle= "Testing", NoteContent="Unit Testing", NoteStatus= "Started" };
-            int result= noteRepository.AddNote(note);
+            Note note = new Note { NoteTitle = "Testing", NoteContent = "Unit Testing", NoteStatus = "Started" };
+            int result = noteRepository.AddNote(note);
             Assert.NotEqual(0, result);
             Assert.True(noteRepository.Exists(note.NoteId));
             Assert.Equal(3, note.NoteId);
@@ -34,11 +34,11 @@ namespace Test
         public void DeleteNoteShouldSuccess()
         {
             int id = 2;
-            int result= noteRepository.DeletNote(id);
+            int result = noteRepository.DeletNote(id);
             Assert.NotEqual(0, result);
             Assert.False(noteRepository.Exists(id));
         }
-       
+
         [Fact, TestPriority(3)]
         public void GetNoteByIdShouldReturnANote()
         {
@@ -51,14 +51,14 @@ namespace Test
         [Fact, TestPriority(4)]
         public void UpdateNoteShouldSuccess()
         {
-            var note= noteRepository.GetNoteById(1);
+            var note = noteRepository.GetNoteById(1);
             note.NoteTitle = "Tech-Stack";
             note.NoteContent = "DotNet";
 
             var result = noteRepository.UpdateNote(note);
             Assert.NotEqual(0, result);
 
-            var updatedNote= noteRepository.GetNoteById(note.NoteId);
+            var updatedNote = noteRepository.GetNoteById(note.NoteId);
             Assert.Equal("Tech-Stack", updatedNote.NoteTitle);
             Assert.Equal("DotNet", updatedNote.NoteContent);
         }
