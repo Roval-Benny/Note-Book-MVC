@@ -28,7 +28,7 @@ namespace Keepnote
         {
             services.AddScoped<INoteRepository, NoteRepository>();
             services.AddDbContext<KeepNoteContext>(opt=>
-            opt.UseSqlServer("data source=localhost;Initial Catalog=Note;Integrated Security=True"));
+            opt.UseSqlServer(Configuration.GetConnectionString("azuredb")));
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
