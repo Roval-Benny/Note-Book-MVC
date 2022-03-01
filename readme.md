@@ -1,6 +1,5 @@
-## Seed code - Boilerplate for step 2 - Keep Note Assignment
 ### Assignment Step Description
-In this case study: Keep Note Step 2, we will create an Application which accepts Note Title, Note Content, and Note Status as input from the front end and displays the same along with the LocalDateTime of posting in a reverse chronological order (latest Note first). 
+In this case study: Note Book, we will create an Application which accepts Note Title, Note Content, and Note Status as input from the front end and displays the same along with the LocalDateTime of posting in a reverse chronological order (latest Note first). 
 
 Even though functionality-wise and the output of step-1 and step-2 are same, 
  1. In step-1 we created a monolithic application but in this step-2, we will use persistent data storage,  
@@ -11,7 +10,7 @@ Here we will have a **Note** class which will be acting as the data model for no
 Ef Core DbContext is responsible to generate the respective database and table using Code first approach. 
 
 ### Problem Statement
-In this case study: Keep Note Step 2 we will create an application that requires us to implement four functionalities. They are as follows:
+In this case study: Note Book we will create an application that requires us to implement four functionalities. They are as follows:
 1. Display the list of existing notes from the database.
 2. Add a new Note.
 3. Delete Note
